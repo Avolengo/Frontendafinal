@@ -1,0 +1,63 @@
+body, html {
+    height: 100%;
+    background-image: url("imagenes/logo/principal.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    text-decoration: solid;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-box {
+    width: 300px;
+    padding: 40px;
+    background: black;
+    text-align: center;
+    border-block-style: white;
+}
+
+.form-title {
+    color: aliceblue;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.form-box input[type="text"],
+.form-box input[type="password"],
+.form-box button[type="submit"] {
+    border:"0";
+    background: none;
+    display: block;
+    margin: 20px auto;
+    padding: 14px 10px;
+    text-align: center;
+    border: 2px solid white;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.form-box input [type="text"]:focus,
+.form-box input [type="password"]:focus {
+    width: 280px;
+    border-color: white;
+}
+
+.form-box button[type="submit"] {
+    border: 0;
+    background-color: blue;
+    cursor: pointer;
+}

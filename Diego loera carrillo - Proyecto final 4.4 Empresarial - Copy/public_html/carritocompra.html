@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with LeadMark landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Ghost Apparel</title>
+    <title>Carrito de Compras</title>
+    <style>
+        /* Estilo para el elemento del total */
+        #totalFijo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-weight: bold;
+        }
+        /* Estilo para el botón de eliminar */
+        .eliminarArticulo {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+}
+  /* Estilo para los elementos de la lista */
+         #articulos li {
+            margin-bottom: 5px;
+        }
+
+    </style>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + LeadMark main styles -->
+	<link rel="stylesheet" href="assets/css/leadmark.css">
+    <div class="contenedor">
+            </p>
+            </div>
+        </div>
+    </div>
+</head>
+<body>
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">                     
+                    <br>
+                    <li class="right_button">
+                        <a class="right_button" href="index2.html">Pagina principal</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Carrito de Compras</h1>
+    <div id="totalFijo">Total: $<span id="total">0.00</span></div>
+    <button><a href="gracias.html">Pagar</a></button>
+    <button><a href="targeta.html">Pagar con otra tarjeta</a></button>
+
+    <!-- Lista de artículos -->
+    <ul id="articulos">
+        <!-- Los artículos serán agregados dinámicamente mediante JavaScript -->
+    </ul>
+
+    <!-- Imágenes de productos -->
+    <div class="productos">
+        <!-- Agrega tus imágenes de productos con atributos personalizados -->
+        <section><img src="imagenes/love is pain.jpg" class="rounded" alt="Love Is Pain" width="300" height="300" align="left"  data-nombre="Love Is Pain" data-precio="250.00" onclick="agregarProducto(event)"></section>
+        
+        <section><img src="imagenes/ojitos fantasmales.jpg" class="rounded" alt="Ojitos Fantasmales" width="300" height="300" align="left" data-nombre="ojitos fantasmales" data-precio="450.00" onclick="agregarProducto(event)"></section>
+        
+        <section><img src="imagenes/flor rosa.jpg" class="rounded"s alt="flor rosa" width="300" height="300" align="left" data-nombre="flor rosa" data-precio="450.00" onclick="agregarProducto(event)"></section>
+        <!-- Puedes agregar más imágenes aquí -->
+    </div>
+<!-- Total del carrito -->
+
+
+<!-- Script de JavaScript -->
+<script>
+    // Array para almacenar los artículos en el carrito
+    let carrito = [];
+
+    // Función para agregar un producto al carrito
+    function agregarProducto(event) {
+        const imagen = event.target;
+        const nombre = imagen.getAttribute('data-nombre');
+        const precio = parseFloat(imagen.getAttribute('data-precio'));
+
+        if (nombre && precio) {
+            const producto = {
+                nombre: nombre,
+                precio: precio
+            };
+            carrito.push(producto);
+            actualizarLista();
+            actualizarTotal();
+        }
+    }
+
+    // Función para eliminar un artículo del carrito
+    function eliminarArticulo(index) {
+        carrito.splice(index, 1);
+        actualizarLista();
+        actualizarTotal();
+    }
+
+    // Función para actualizar la lista de artículos en el HTML
+    function actualizarLista() {
+        const listaArticulos = document.getElementById('articulos');
+        listaArticulos.innerHTML = '';
+
+        carrito.forEach((articulo, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `${articulo.nombre} - $${articulo.precio.toFixed(2)} <button class="eliminarBtn" onclick="eliminarArticulo(${index})">Eliminar</button>`;
+            listaArticulos.appendChild(li);
+        });
+    }
+
+    // Función para actualizar el total del carrito en el HTML
+    function actualizarTotal() {
+        const total = carrito.reduce((acc, articulo) => acc + articulo.precio, 0);
+        const totalElement = document.getElementById('total');
+        totalElement.textContent = total.toFixed(2);
+    }
+</script>
+
+
+    
+</body>
+</html>
